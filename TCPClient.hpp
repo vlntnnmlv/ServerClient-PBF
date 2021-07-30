@@ -65,8 +65,6 @@ class TCPClient
         template<typename F, typename ...Args>
         void start(F callable, Args ...args)
         {
-        //     int n;
-        //     char buffer[256];
             while (true)
             {
                 if (socket_fd == -1)

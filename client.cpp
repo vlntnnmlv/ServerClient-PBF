@@ -6,10 +6,9 @@
 #include "TCPClient.hpp"
 void routine(uint16_t socket_fd, std::string name, int period)
 {
-    char buffer[256];
-    int n;
+    char    buffer[256];
+    int     n;
 
-    printf("Please enter the message: ");
     bzero(buffer, 256);
     std::string msg = gettimestamp();
     msg.append(" ");
@@ -21,14 +20,6 @@ void routine(uint16_t socket_fd, std::string name, int period)
         std::cerr << "ERROR writing to socket" << std::endl;
         throw std::exception();
     }
-    bzero(buffer,256);
-    n = read(socket_fd,buffer,255);
-    if (n < 0) 
-    {
-        std::cerr << "ERROR connecting" << std::endl;
-        throw std::exception();
-    }
-    printf("%s\n",buffer);
     close(socket_fd);
     socket_fd = -1;
     sleep(period);
